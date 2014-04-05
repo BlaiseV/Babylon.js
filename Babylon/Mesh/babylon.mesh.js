@@ -1106,6 +1106,17 @@ var BABYLON = BABYLON || {};
 
         return box;
     };
+    
+    
+    BABYLON.Mesh.CreateLine = function (name, x0, y0, z0, x1, y1, z1, scene, updatable) {
+        var line = new BABYLON.Mesh(name, scene);
+        var vertexData = BABYLON.VertexData.CreateLine(x0, y0, z0, x1, y1, z1);
+
+        vertexData.applyToMesh(line, updatable);
+
+        return line;
+    };
+
 
     BABYLON.Mesh.CreateSphere = function (name, segments, diameter, scene, updatable) {
         var sphere = new BABYLON.Mesh(name, scene);
