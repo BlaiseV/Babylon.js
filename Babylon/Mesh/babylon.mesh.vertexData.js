@@ -175,6 +175,51 @@ var BABYLON = BABYLON || {};
 
         return vertexData;
     };
+    
+
+    BABYLON.VertexData.CreateLine = function (x0, y0, z0, x1, y1, z1) {
+
+        var indices = [];
+        var positions = [];
+        var normals = [];
+        var uvs = [];
+
+        var normal = new BABYLON.Vector3(0, 0, 1);
+
+        // Get two vectors perpendicular to the face normal and to each other.
+        var side1 = new BABYLON.Vector3(0, 1, 0);
+        var side2 = BABYLON.Vector3.Cross(normal, side1);
+
+        // 1 collapsed triangle.
+        indices.push(0);
+        indices.push(1);
+//        indices.push(2);
+
+        // three vertices per face.
+        positions.push(x0, y0, z0);
+        normals.push(normal.x, normal.y, normal.z);
+        uvs.push(1.0, 1.0);
+
+        positions.push(x1, y1, z1);
+        normals.push(normal.x, normal.y, normal.z);
+        uvs.push(0.0, 1.0);
+
+        //positions.push(x0, y0, z0);
+        //normals.push(normal.x, normal.y, normal.z);
+        //uvs.push(1.0, 1.0);
+
+        var vertexData = new BABYLON.VertexData();
+
+        vertexData.indices = indices;
+        vertexData.positions = positions;
+        vertexData.normals = normals;
+        vertexData.uvs = uvs;
+
+        return vertexData;
+
+    };
+    
+    
 
     BABYLON.VertexData.CreateSphere = function (segments, diameter) {
         var radius = diameter / 2;
